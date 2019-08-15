@@ -7,6 +7,6 @@ sleep 10
 
 echo "Run base script"
 # curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/shared/scripts/base.sh | bash
-bash ../scripts/base.sh
+curl https://raw.githubusercontent.com/ppresto/vault-learning/master/scripts/base.sh | bash
 
 echo "[---install-base.sh Complete---]"
