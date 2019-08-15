@@ -19,11 +19,11 @@ data "aws_ami" "base" {
 }
 
 data "template_file" "base_install" {
-  template = "${file("${path.module}/../../templates/install-base.sh.tpl")}"
+  template = "${file("${path.module}/../templates/install-base.sh.tpl")}"
 }
 
 data "template_file" "consul_install" {
-  template = "${file("${path.module}/../../templates/install-consul-systemd.sh.tpl")}"
+  template = "${file("${path.module}/../templates/install-consul-systemd.sh.tpl")}"
 
   vars = {
     consul_version  = "${var.consul_version}"
@@ -36,7 +36,7 @@ data "template_file" "consul_install" {
 }
 
 data "template_file" "vault_install" {
-  template = "${file("${path.module}/../../templates/install-vault-systemd.sh.tpl")}"
+  template = "${file("${path.module}/../templates/install-vault-systemd.sh.tpl")}"
 
   vars = {
     vault_version  = "${var.vault_version}"
@@ -49,7 +49,7 @@ data "template_file" "vault_install" {
 }
 
 data "template_file" "bastion_quick_start" {
-  template = "${file("${path.module}/../../templates/quick-start-bastion-systemd.sh.tpl")}"
+  template = "${file("${path.module}/../templates/quick-start-bastion-systemd.sh.tpl")}"
 
   vars = {
     name            = "${var.name}"
@@ -61,7 +61,8 @@ data "template_file" "bastion_quick_start" {
 }
 
 module "network_aws" {
-  source = "github.com/hashicorp-modules/network-aws"
+  #source = "github.com/hashicorp-modules/network-aws"
+  source = "./modules/network-aws"
 
   name              = "${var.name}"
   vpc_cidr          = "${var.vpc_cidr}"
@@ -82,7 +83,7 @@ EOF
 }
 
 data "template_file" "consul_quick_start" {
-  template = "${file("${path.module}/../../templates/quick-start-consul-systemd.sh.tpl")}"
+  template = "${file("${path.module}/../templates/quick-start-consul-systemd.sh.tpl")}"
 
   vars = {
     name             = "${var.name}"
@@ -95,7 +96,8 @@ data "template_file" "consul_quick_start" {
 }
 
 module "consul_aws" {
-  source = "github.com/hashicorp-modules/consul-aws"
+  #source = "github.com/hashicorp-modules/consul-aws"
+  source = "./modules/consul-aws"
 
   name          = "${var.name}" # Must match network_aws module name for Consul Auto Join to work
   vpc_id        = "${module.network_aws.vpc_id}"
@@ -117,7 +119,7 @@ EOF
 }
 
 data "template_file" "vault_quick_start" {
-  template = "${file("${path.module}/../../templates/quick-start-vault-systemd.sh.tpl")}"
+  template = "${file("${path.module}/../templates/quick-start-vault-systemd.sh.tpl")}"
 
   vars = {
     name            = "${var.name}"
@@ -131,8 +133,9 @@ data "template_file" "vault_quick_start" {
 }
 
 module "vault_aws" {
-  source = "github.com/hashicorp-modules/vault-aws"
-
+  #source = "github.com/hashicorp-modules/vault-aws"
+  source = "./modules/vault-aws"
+  
   name          = "${var.name}" # Must match network_aws module name for Consul Auto Join to work
   vpc_id        = "${module.network_aws.vpc_id}"
   vpc_cidr      = "${module.network_aws.vpc_cidr}"
