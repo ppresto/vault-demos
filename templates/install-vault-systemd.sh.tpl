@@ -7,22 +7,18 @@ export GROUP=vault
 export USER=vault
 export COMMENT=Vault
 export HOME=/srv/vault
-#curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/shared/scripts/setup-user.sh | bash
-curl https://raw.githubusercontent.com/ppresto/vault-learning/master/scripts/setup-user.sh | bash
+curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/shared/scripts/setup-user.sh | bash
 
 echo "Install Vault"
 export VERSION=${vault_version}
 export URL=${vault_url}
-#curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/vault/scripts/install-vault.sh | bash
-curl https://raw.githubusercontent.com/ppresto/vault-learning/master/scripts/install-vault.sh | bash
+curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/vault/scripts/install-vault.sh | bash
 
 echo "Install Vault Systemd"
-#curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/vault/scripts/install-vault-systemd.sh | bash
-curl https://raw.githubusercontent.com/ppresto/vault-learning/master/scripts/install-vault-systemd.sh | bash
+curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/vault/scripts/install-vault-systemd.sh | bash
 
 echo "Cleanup install files"
-#curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/shared/scripts/cleanup.sh | bash
-curl https://raw.githubusercontent.com/ppresto/vault-learning/master/scripts/cleanup.sh | bash
+curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/shared/scripts/cleanup.sh | bash
 
 echo "Set variables"
 VAULT_CONFIG_FILE=/etc/vault.d/default.hcl

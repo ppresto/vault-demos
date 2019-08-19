@@ -132,7 +132,7 @@ data "template_file" "vault_quick_start" {
 
 module "vault_aws" {
   source = "github.com/hashicorp-modules/vault-aws"
-  
+
   name          = "${var.name}" # Must match network_aws module name for Consul Auto Join to work
   vpc_id        = "${module.network_aws.vpc_id}"
   vpc_cidr      = "${module.network_aws.vpc_cidr}"

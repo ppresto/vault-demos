@@ -1,0 +1,3 @@
+{
+  "policy":  "# Read-only permit\npath \"kv-v1/eng/apikey/Google\" {\n  capabilities = [ \"read\" ]\n}\n\n# Read-only permit\npath \"kv-v1/prod/cert/mysql\" {\n  capabilities = [ \"read\" ]\n}"
+}
