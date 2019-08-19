@@ -63,7 +63,7 @@ if [[ $(curl -s http://127.0.0.1:8500/v1/agent/members) ]]; then
     exit 0
 
   elif [[ $1 == "upgrade" ]]; then
-    break
+    echo "Upgrading:  $(echo $Nodes)"
 
   else 
     echo "Usage: This script accepts a single arg of 'health or upgrade'"

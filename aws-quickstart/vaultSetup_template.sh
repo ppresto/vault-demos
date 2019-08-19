@@ -7,7 +7,7 @@ if [[ -z ${DEMO_WAIT} ]];then
 fi
 
 # Demo magic gives wrappers for running commands in demo mode.   Also good for learning via CLI.
-. demo-magic.sh -d -p -w ${DEMO_WAIT}
+. labs/demo-magic.sh -d -p -w ${DEMO_WAIT}
 
 # Set Env Variables using terraform output
 VAULT_ADDR=$(terraform output | grep "export VAULT_ADDR" | head -1 | cut -d= -f2)
@@ -97,9 +97,10 @@ sed -i '' "s|MYCONSULADDR|${CONSUL_ADDR}|" ${DIR}/${myscript}
 
 
 # scp this script to bastion host
-cyan "Copying/Running Vault Setup Script on Bastion host"
+cyan "Copying & Running initial Vault Setup Scripts on Bastion host"
 chmod 750 ${DIR}/${myscript}
 scp -oStrictHostKeyChecking=no -i ${PRIVATE_KEY} ${DIR}/${myscript} ec2-user@${BASTION_HOST}:
+scp -oStrictHostKeyChecking=no -i ${PRIVATE_KEY} ${DIR}/vaultAdmin.sh ec2-user@${BASTION_HOST}:
 echo
 
 # Execute script on bastion host

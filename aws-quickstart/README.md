@@ -73,10 +73,6 @@ $ terraform plan
 
 Run a `terraform apply` to provision the HashiStack. One provisioned, view the `zREADME` instructions output from Terraform for next steps.
 
-### Step 4: Configure
-
-Run `./vaultSetupScript_template.sh` to ssh to bastion host to initialize, unseal, and setup vault environment variables.
-
 #### CLI
 
 [`terraform apply` command](https://www.terraform.io/docs/commands/apply.html)
@@ -87,10 +83,45 @@ Run `./vaultSetupScript_template.sh` to ssh to bastion host to initialize, unsea
 $ terraform apply
 ```
 
-##### Response
+### Step 4: Configure
+
+** This is for development only!! **
+Run `./vaultSetup_template.sh` from your build system.  This will scp/ssh to the bastion host to initialize, unseal, and setup vault your environment variables.  This will set your VAULT_TOKEN to the ROOT Token, and copy the adminVault.sh script to the bastion host to automate admin tasks like checking cluster health, and upgrading to v1.2.2.  FYI:  This script uses your Shamir Keys which were added to your ec2-user's ~/.bashrc by vaultSetup_template.sh for unsealing nodes that may have been restarted or shutdown during dev.
+
+## Step 5: Administration
+
+The vaultAdmin.sh script can be used to quickly assess your Vault Cluster health.  This can also upgrade your cluster to v1.2.2 if desired.  This script should be run from your bastion host or have direct access to your Vault Cluster.  This script depends on you running the configuration step previsously with "vaultSetup
+
 ```
+$ sshbastion  # ssh alias created by vaultSetup_template.sh to get to your bastion host.
+
+$ ./vaultAdmin.sh health
+
+10.139.3.127 healthy (ver=1.2.2, sealed=false, HTTP_CODE=429)
+10.139.1.33 healthy (ver=1.2.2, sealed=false, HTTP_CODE=200) - Leader
+10.139.2.161 healthy (ver=1.2.2, sealed=false, HTTP_CODE=429)
+
+$ ./vaultAdmin.sh upgrade  #Example output for a cluster already upgraded to v1.2.2 ...
+
+Upgrading:  10.139.3.127 10.139.2.161 10.139.1.33
+Leader URL: "http://10.139.1.33:8200"
+10.139.3.127 healthy (ver=1.2.2, sealed=false, HTTP_CODE=429)
+10.139.3.127 (ver:1.2.2, health status: 429) Skipping Upgrade
+10.139.2.161 healthy (ver=1.2.2, sealed=false, HTTP_CODE=429)
+10.139.2.161 (ver:1.2.2, health status: 429) Skipping Upgrade
+10.139.1.33 healthy (ver=1.2.2, sealed=false, HTTP_CODE=200) - Leader
+10.139.1.33 (Leader:true, ver:1.2.2, health status: 200) Skipping Upgrade
+```
+
+## Step 6: Labs
+
+Walk through the vault basics in ./labs starting with 1. 
+
+```
+cd ./labs
+./1_awsSecretsEngine.sh
 ```
 
 ## Next Steps
 
-Now that you've provisioned and configured a best practices Vault & Consul cluster, visit our [learn](https://learn.hashicorp.com/vault/?track=secrets-management#secrets-managemen) site.
+Now that you've provisioned, configured, and administered your Vault & Consul cluster, visit our [learn](https://learn.hashicorp.com/vault/?track=secrets-management#secrets-managemen) site.
