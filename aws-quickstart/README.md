@@ -88,6 +88,28 @@ $ terraform apply
 ** This is for development only!! **
 Run `./vaultSetup_template.sh` from your build system.  This will scp/ssh to the bastion host to initialize, unseal, and setup vault your environment variables.  This will set your VAULT_TOKEN to the ROOT Token, and copy the adminVault.sh script to the bastion host to automate admin tasks like checking cluster health, and upgrading to v1.2.2.  FYI:  This script uses your Shamir Keys which were added to your ec2-user's ~/.bashrc by vaultSetup_template.sh for unsealing nodes that may have been restarted or shutdown during dev.
 
+```
+$ ./vaultSetup_template.sh
+
+Creating /Users/patrickpresto/Projects/vault/vault-learning/aws-quickstart/vaultSetup.sh
+Copying & Running initial Vault Setup Scripts on Bastion host
+vaultSetup.sh                                                                                                                                100% 2399    41.0KB/s
+vaultAdmin.sh                                                                                                                                100% 5789   103.4KB/s 
+
+Cut/Paste to Setup your workstation Env
+
+VAULT_ADDR=http://vault-lb-c838a21c-1164609434.us-west-2.elb.amazonaws.com:8200
+CONSUL_ADDR=http://consul-lb-5e3599f1-1525620606.us-west-2.elb.amazonaws.com:8500
+BASTION_HOST=54.189.143.98
+PRIVATE_KEY=ppresto-vault-dev-47bc6865.key.pem
+export VAULT_ADDR=${VAULT_ADDR}
+export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")
+export CONSUL_ADDR=${CONSUL_ADDR}
+export CONSUL_HTTP_ADDR=${CONSUL_ADDR}
+alias sshbastion='ssh -A -i ppresto-vault-dev-47bc6865.key.pem ec2-user@54.189.143.98'
+alias vaulttoken='export VAULT_TOKEN=xxxxxxxx'  # useful to reset root token during testing
+```
+
 ## Step 5: Administration
 
 The vaultAdmin.sh script can be used to quickly assess your Vault Cluster health.  This can also upgrade your cluster to v1.2.2 if desired.  This script should be run from your bastion host or have direct access to your Vault Cluster.  This script depends on you running the configuration step previsously with "vaultSetup

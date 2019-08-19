@@ -114,11 +114,14 @@ VAULT_ADDR=$(terraform output | grep 'export VAULT_ADDR' | head -1 | cut -d= -f2
 CONSUL_ADDR=$(terraform output | grep 'export CONSUL_ADDR' | head -1 | cut -d= -f2)
 BASTION_HOST=$(terraform output bastion_ips_public)
 PRIVATE_KEY=$(terraform output private_key_filename)
-alias sshbastion="ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST}"
+
 export VAULT_ADDR=${VAULT_ADDR}
 export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")
 export CONSUL_ADDR=${CONSUL_ADDR}
 export CONSUL_HTTP_ADDR=${CONSUL_ADDR}
+
+alias sshbastion="ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST}"
+alias vaulttoken="export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} 'env | grep VAULT_TOKEN')"
 
 # Output Env Variables for Vault on workstation
 echo
@@ -133,5 +136,4 @@ echo 'export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAU
 echo 'export CONSUL_ADDR=${CONSUL_ADDR}'
 echo 'export CONSUL_HTTP_ADDR=${CONSUL_ADDR}'
 echo "alias sshbastion='ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST}'"
-echo
-cyan ""
+echo "alias vaulttoken='export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'"
