@@ -1,8 +1,6 @@
-# Provision a Vault Cluster in AWS
+# Provision a Quick Start Vault Cluster in AWS
 
-The goal of this guide is to provision a quick start Vault & Consul cluster in a private network with a bastion host.
-
-This leverages the scripts in the [Guides Configuration Repo](https://github.com/hashicorp/guides-configuration) to do runtime configuration for Vault & Consul. Although using `curl bash` at runtime is _not_ best practices, this makes it quick and easy to standup a Vault & Consul cluster with no external dependencies like pre-built images.
+The goal of this guide is to allows users to easily provision a quick start Vault & Consul cluster in just a few commands.
 
 ## Reference Material
 
@@ -13,9 +11,19 @@ This leverages the scripts in the [Guides Configuration Repo](https://github.com
 - [Vault Getting Started](https://www.vaultproject.io/intro/getting-started/install.html)
 - [Vault Docs](https://www.vaultproject.io/docs/index.html)
 
-## Estimated Time to Complete Env Build
+## Estimated Time to Complete
 
 5 minutes.
+
+## Challenge
+
+There are many different ways to provision and configure an easily accessible quick start Vault & Consul cluster, making it difficult to get started.
+
+## Solution
+
+Provision a quick start Vault & Consul cluster in a private network with a bastion host.
+
+The AWS Quick Start Vault guide leverages the scripts in the [Guides Configuration Repo](https://github.com/hashicorp/guides-configuration) to do runtime configuration for Vault & Consul. Although using `curl bash` at runtime is _not_ best practices, this makes it quick and easy to standup a Vault & Consul cluster with no external dependencies like pre-built images. This guide will also forgo setting up TLS/encryption on Vault & Consul for the sake of simplicity.
 
 ## Prerequisites
 
@@ -33,9 +41,14 @@ Initialize Terraform - download providers and modules.
 
 [`terraform init` Command](https://www.terraform.io/docs/commands/init.html)
 
+##### Request
+
 ```sh
-$ cd ./aws-quickstart
 $ terraform init
+```
+
+##### Response
+```
 ```
 
 ### Step 2: Plan
@@ -46,8 +59,14 @@ Run a `terraform plan` to ensure Terraform will provision what you expect.
 
 [`terraform plan` Command](https://www.terraform.io/docs/commands/plan.html)
 
+##### Request
+
 ```sh
 $ terraform plan
+```
+
+##### Response
+```
 ```
 
 ### Step 3: Apply
@@ -58,24 +77,109 @@ Run a `terraform apply` to provision the HashiStack. One provisioned, view the `
 
 [`terraform apply` command](https://www.terraform.io/docs/commands/apply.html)
 
+##### Request
+
 ```sh
 $ terraform apply
 ```
 
-### Step 4: Configure Vault
+### Step 4: Configure
 
-Run `0.vaultSetupScript_template.sh` to ssh to bastion host to initialize, unseal, and setup vault environment variables locally and on bastion host so you can interact with vault.
+** This is for development only!! **
+Run `./vaultSetup_template.sh` from your build system.  This will scp/ssh to the bastion host to initialize, unseal, and setup vault your environment variables.  This will set your VAULT_TOKEN to the ROOT Token, and copy the adminVault.sh script to the bastion host to automate admin tasks like checking cluster health, and upgrading to v1.2.2.  FYI:  This script uses your Shamir Keys which were added to your ec2-user's ~/.bashrc by vaultSetup_template.sh for unsealing nodes that may have been restarted or shutdown during dev.
 
-#### CLI
+```
+$ ./vaultSetup_template.sh
 
-```sh
-$ ./0.vaultSetupScript_template.sh
+Creating /Users/patrickpresto/Projects/vault/vault-learning/aws-quickstart/vaultSetup.sh
+Copying & Running initial Vault Setup Scripts on Bastion host
+vaultSetup.sh                                                                                                                                100% 2399    41.0KB/s
+vaultAdmin.sh                                                                                                                                100% 5789   103.4KB/s 
+
+Cut/Paste to Setup your workstation Env
+
+VAULT_ADDR=http://vault-lb-c838a21c-1164609434.us-west-2.elb.amazonaws.com:8200
+CONSUL_ADDR=http://consul-lb-5e3599f1-1525620606.us-west-2.elb.amazonaws.com:8500
+BASTION_HOST=54.189.143.98
+PRIVATE_KEY=ppresto-vault-dev-47bc6865.key.pem
+export VAULT_ADDR=${VAULT_ADDR}
+export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")
+export CONSUL_ADDR=${CONSUL_ADDR}
+export CONSUL_HTTP_ADDR=${CONSUL_ADDR}
+alias sshbastion='ssh -A -i ppresto-vault-dev-47bc6865.key.pem ec2-user@54.189.143.98'
+alias vaulttoken='export VAULT_TOKEN=xxxxxxxx'  # useful to reset root token during testing
+```
+
+## Step 5: Administration
+
+The vaultAdmin.sh script can be used to quickly assess your Vault Cluster health.  This can also upgrade your cluster to v1.2.2 if desired.  This script should be run from your bastion host or have direct access to your Vault Cluster.  This script depends on you running the configuration step previsously with "vaultSetup
+
+```
+$ sshbastion  # ssh alias created by vaultSetup_template.sh to get to your bastion host.
+
+$ ./vaultAdmin.sh health
+
+10.139.3.127 healthy (ver=1.2.2, sealed=false, HTTP_CODE=429)
+10.139.1.33 healthy (ver=1.2.2, sealed=false, HTTP_CODE=200) - Leader
+10.139.2.161 healthy (ver=1.2.2, sealed=false, HTTP_CODE=429)
+
+$ ./vaultAdmin.sh upgrade  #Example output for a cluster already upgraded to v1.2.2 ...
+
+Upgrading:  10.139.3.127 10.139.2.161 10.139.1.33
+Leader URL: "http://10.139.1.33:8200"
+10.139.3.127 healthy (ver=1.2.2, sealed=false, HTTP_CODE=429)
+10.139.3.127 (ver:1.2.2, health status: 429) Skipping Upgrade
+10.139.2.161 healthy (ver=1.2.2, sealed=false, HTTP_CODE=429)
+10.139.2.161 (ver:1.2.2, health status: 429) Skipping Upgrade
+10.139.1.33 healthy (ver=1.2.2, sealed=false, HTTP_CODE=200) - Leader
+10.139.1.33 (Leader:true, ver:1.2.2, health status: 200) Skipping Upgrade
+```
+
+## Step 6: aws-quickstart/labs
+
+Walk through the vault basics in aws-quickstart/labs starting with 1. 
+
+```
+cd ./aws-quickstart/labs
+./1_awsSecretsEngine.sh
+```
+
+## Step 7: docker/
+
+The Dynamic Secrets lab is using docker.  Running vault in docker can be very quick and its an excellent way to test things.
+```
+cd ./docker
+./9_PostgresSQL-dynamic-creds.sh
+```
+
+## Advanced Setup - AWS RDS Postgres
+The initial aws-quickstart is required to setup our Vault Env and local workstation.  Using this environment we can add an AWS RDS Postgres DB to it and run vault->database simulations in AWS.  To build your RDS make sure you update the main.tf with the same var.name value you used in aws-quickstart.  This is needed for terraform data sources to find your existing VPC, Subnets, and Security Groups.  This requires Terraform .12
+
+```
+./aws-quickstart/vaultSetup_template.sh   # copy/paste env output and setup your local workstation.
+cd ./aws-rds
+vi main.tf          # Update var.name to match what was used in aws-quickstart
+terraform version   # 0.12 Required.
+terraform init
+alias tf='DATE=$(date +%m%d%Y-%H%M); terraform plan -out ./.terraform/tfplan.$DATE && terraform apply ./.terraform/tfplan.$DATE'
+tf
+```
+
+** Important Update Required **
+Now your RDS is created in your current VPC and mapped to your current aws vault-server security group.  You will need to edit your vault-server sg to allow your vault servers or all servers access to your new Postgres RDS service listening on TCP 5432.  May add this later...
+ 
+
+This script will scp/ssh to the BASTION_HOST and setup your vault servers with psql client to run a connectivity test to your RDS.
+
+* Identify your Bastion Host name/IP and export to BASTION_HOST. 
+
+```
+cd ./aws-rds
+export BASTION_HOST=<BastionHost_IP_HERE>
+./rdsSetup_template.sh          # installs psql on your vault cluster and tests basic connectivity to RDS.  Make sure there are no errors.
+./10_RDS-psql-dynamic-creds.sh  # run the excersizes
 ```
 
 ## Next Steps
-Go to learn.hashicorp.com and walk through the examples.
-* secrets engine - 1_awsSecretsEngine.sh
-* github auth - 2_githubAuth.sh
-* policies - 3_policy.sh, 4_policy_test.sh
-* appRole Auth - 5_appRoleAuth_API.sh
 
+Now that you've provisioned, configured, and administered your Vault & Consul cluster, visit our [learn](https://learn.hashicorp.com/vault/?track=secrets-management#secrets-managemen) site.
