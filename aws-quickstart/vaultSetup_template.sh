@@ -7,13 +7,13 @@ if [[ -z ${DEMO_WAIT} ]];then
 fi
 
 # Demo magic gives wrappers for running commands in demo mode.   Also good for learning via CLI.
-. labs/demo-magic.sh -d -p -w ${DEMO_WAIT}
+. ${DIR}/../demo-magic.sh -d -p -w ${DEMO_WAIT}
 
 # Set Env Variables using terraform output
-VAULT_ADDR=$(terraform output | grep "export VAULT_ADDR" | head -1 | cut -d= -f2)
-CONSUL_ADDR=$(terraform output | grep "export CONSUL_ADDR" | head -1 | cut -d= -f2)
-BASTION_HOST=$(terraform output bastion_ips_public)
-PRIVATE_KEY=$(terraform output private_key_filename)
+VAULT_ADDR=$(cd ${DIR}; terraform output | grep "export VAULT_ADDR" | head -1 | cut -d= -f2)
+CONSUL_ADDR=$(cd ${DIR}; terraform output | grep "export CONSUL_ADDR" | head -1 | cut -d= -f2)
+BASTION_HOST=$(cd ${DIR}; terraform output bastion_ips_public)
+PRIVATE_KEY=$(cd ${DIR}; terraform output private_key_filename)
 
 # Note:  If ssh agent has too many keys it can break things.  Try cleaning them up with "ssh-add -D and readding manually"
 #
@@ -99,41 +99,41 @@ sed -i '' "s|MYCONSULADDR|${CONSUL_ADDR}|" ${DIR}/${myscript}
 # scp this script to bastion host
 cyan "Copying & Running initial Vault Setup Scripts on Bastion host"
 chmod 750 ${DIR}/${myscript}
-scp -oStrictHostKeyChecking=no -i ${PRIVATE_KEY} ${DIR}/${myscript} ec2-user@${BASTION_HOST}:
-scp -oStrictHostKeyChecking=no -i ${PRIVATE_KEY} ${DIR}/vaultAdmin.sh ec2-user@${BASTION_HOST}:
+scp -oStrictHostKeyChecking=no -i ${DIR}/${PRIVATE_KEY} ${DIR}/${myscript} ec2-user@${BASTION_HOST}:
+scp -oStrictHostKeyChecking=no -i ${DIR}/${PRIVATE_KEY} ${DIR}/vaultAdmin.sh ec2-user@${BASTION_HOST}:
 echo
 
 # Execute script on bastion host
-ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} "./${myscript}"
+ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "./${myscript}"
 
 # remove temp script locally to keep repo clean
 rm ${DIR}/${myscript}
 
 # Setup Workstaion Env
-VAULT_ADDR=$(terraform output | grep 'export VAULT_ADDR' | head -1 | cut -d= -f2)
-CONSUL_ADDR=$(terraform output | grep 'export CONSUL_ADDR' | head -1 | cut -d= -f2)
-BASTION_HOST=$(terraform output bastion_ips_public)
-PRIVATE_KEY=$(terraform output private_key_filename)
+VAULT_ADDR=$(cd ${DIR}; terraform output | grep 'export VAULT_ADDR' | head -1 | cut -d= -f2)
+CONSUL_ADDR=$(cd ${DIR}; terraform output | grep 'export CONSUL_ADDR' | head -1 | cut -d= -f2)
+BASTION_HOST=$(cd ${DIR}; terraform output bastion_ips_public)
+PRIVATE_KEY=$(cd ${DIR}; terraform output private_key_filename)
 
 export VAULT_ADDR=${VAULT_ADDR}
-export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")
+export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")
 export CONSUL_ADDR=${CONSUL_ADDR}
 export CONSUL_HTTP_ADDR=${CONSUL_ADDR}
 
-alias sshbastion="ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST}"
-alias vaulttoken="export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} 'env | grep VAULT_TOKEN')"
+alias sshbastion="ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST}"
+alias vaulttoken="export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} 'env | grep VAULT_TOKEN')"
 
 # Output Env Variables for Vault on workstation
 echo
 cyan "Cut/Paste to Setup your workstation Env"
 echo
-echo "VAULT_ADDR=$(terraform output | grep 'export VAULT_ADDR' | head -1 | cut -d= -f2)"
-echo "CONSUL_ADDR=$(terraform output | grep 'export CONSUL_ADDR' | head -1 | cut -d= -f2)"
-echo "BASTION_HOST=$(terraform output bastion_ips_public)"
-echo "PRIVATE_KEY=$(terraform output private_key_filename)"
+echo "VAULT_ADDR=$(cd ${DIR}; terraform output | grep 'export VAULT_ADDR' | head -1 | cut -d= -f2)"
+echo "CONSUL_ADDR=$(cd ${DIR}; terraform output | grep 'export CONSUL_ADDR' | head -1 | cut -d= -f2)"
+echo "BASTION_HOST=$(cd ${DIR}; terraform output bastion_ips_public)"
+echo "PRIVATE_KEY=$(cd ${DIR}; terraform output private_key_filename)"
 echo 'export VAULT_ADDR=${VAULT_ADDR}'
-echo 'export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'
+echo 'export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'
 echo 'export CONSUL_ADDR=${CONSUL_ADDR}'
 echo 'export CONSUL_HTTP_ADDR=${CONSUL_ADDR}'
-echo "alias sshbastion='ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST}'"
-echo "alias vaulttoken='export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'"
+echo "alias sshbastion='ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST}'"
+echo "alias vaulttoken='export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'"

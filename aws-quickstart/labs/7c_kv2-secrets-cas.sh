@@ -7,7 +7,7 @@ if [[ -z ${DEMO_WAIT} ]];then
 fi
 
 # Demo magic gives wrappers for running commands in demo mode.   Also good for learning via CLI.
-. demo-magic.sh -d -p -w ${DEMO_WAIT}
+. ${DIR}/../../demo-magic.sh -d -p -w ${DEMO_WAIT}
 
 
 #cyan "enable Check and Set (cas) for mount secret/"
