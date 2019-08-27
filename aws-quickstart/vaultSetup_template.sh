@@ -43,9 +43,10 @@ fi
 cat <<'EOF'
 #!/bin/bash
 
+    vaultURL="MYVAULTADDR/v1/sys/init"
     if [[ $(curl -s http://127.0.0.1:8500/v1/agent/members) ]]; then
 
-        if [[ $(curl -s MYVAULTADDR/v1/sys/init | jq '.initialized') != "true" ]]; then
+        if [[ $(curl -s ${vaultURL} | jq '.initialized') != "true" ]]; then
             # Initialize vault
             # Alternative API Doc: https://learn.hashicorp.com/vault/getting-started/apis
 
@@ -69,6 +70,8 @@ cat <<'EOF'
             fi
             echo "KEYS : $KEYS"
             echo "Root Token: $root_token"
+        else
+            echo "Failed to verify vault initialization status: ${vaultURL}"
         fi
 
         # Unseal Instances

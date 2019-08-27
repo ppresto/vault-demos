@@ -7,8 +7,8 @@ export GROUP=consul
 export USER=consul
 export COMMENT=Consul
 export HOME=/srv/consul
-#curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/shared/scripts/setup-user.sh | bash
-curl https://raw.githubusercontent.com/ppresto/vault-learning/master/scripts/setup-user.sh | bash
+curl https://raw.githubusercontent.com/hashicorp/guides-configuration/master/shared/scripts/setup-user.sh | bash
+#curl https://raw.githubusercontent.com/ppresto/vault-learning/master/scripts/setup-user.sh | bash
 
 echo "Install Consul"
 export VERSION=${consul_version}
