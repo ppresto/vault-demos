@@ -77,3 +77,8 @@ output "this_db_parameter_group_arn" {
   description = "The ARN of the db parameter group"
   value       = "${module.db.this_db_parameter_group_arn}"
 }
+
+output "name_prefix" {
+  description = "Project Name Prefix"
+  value       = "${var.name}"
+}

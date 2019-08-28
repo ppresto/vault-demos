@@ -3,6 +3,13 @@
 # ---------------------------------------------------------------------------------------------------------------------
 variable "name"         { default = "ppresto-vault-dev" }
 
+#
+# Require terraform 0.12.x
+#
+terraform {
+  required_version = ">= 0.12.3"
+}
+
 ###########
 # Provider
 ###########
