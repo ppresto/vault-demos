@@ -120,7 +120,7 @@ green "After CSR is signed and the root CA returns a cert, it can be imported ba
 pe "vault write pki_int/intermediate/set-signed certificate=@intermediate.cert.pem"
 
 echo
-cyan "Create a Role for example.com to allow subdomains"
+cyan "Step 3: Create a Role for example.com to allow subdomains"
 p "vault write pki_int/roles/example-dot-com \\
         allowed_domains=\"example.com\" \\
         allow_subdomains=true \\
@@ -131,7 +131,21 @@ vault write pki_int/roles/example-dot-com \
         allow_subdomains=true \
         max_ttl="720h"
 
+echo
+cyan "Request a Certificate"
+p "vault write pki_int/issue/example-dot-com common_name=\"test.example.com\" ttl=\"24h\""
+cert=$(vault write pki_int/issue/example-dot-com common_name="test.example.com" ttl="24h")
+serial=$(echo $cert | xargs -n2 | grep serial_number | awk '{ print $NF }')
+echo $cert | xargs -n2 | column -t
+
+echo
+cyan "Revoke Certifcates"
+pe "vault write pki_int/revoke serial_number=${serial}"
+
+echo
+cyan "Remove Expired Certificates"
+pe "vault write pki_int/tidy tidy_cert_store=true tidy_revoked_certs=true"
+
 cyan "Removing containers and all generated files before exiting"
-#docker kill vaultdev
-#rm ${DIR}/ca-admin-policy.hcl
-#rm ${DIR}/CA_cert.crt
+docker kill vaultdev
+rm -rf ${DIR}/CA_cert.crt ${DIR}/ca-admin-policy.hcl ${DIR}/intermediate.cert.pem ${DIR}/pki_intermediate.csr
