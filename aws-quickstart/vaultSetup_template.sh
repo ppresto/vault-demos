@@ -135,8 +135,15 @@ echo "CONSUL_ADDR=$(cd ${DIR}; terraform output | grep 'export CONSUL_ADDR' | he
 echo "BASTION_HOST=$(cd ${DIR}; terraform output bastion_ips_public)"
 echo "PRIVATE_KEY=$(cd ${DIR}; terraform output private_key_filename)"
 echo 'export VAULT_ADDR=${VAULT_ADDR}'
-echo 'export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'
 echo 'export CONSUL_ADDR=${CONSUL_ADDR}'
 echo 'export CONSUL_HTTP_ADDR=${CONSUL_ADDR}'
+echo 'export BASTION_HOST=${BASTION_HOST}'
+echo 'export PROXY_COMMAND="proxycommand ssh -A ec2-user@${BASTION_HOST} -W %h:%p"'
 echo "alias sshbastion='ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST}'"
 echo "alias vaulttoken='export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'"
+echo 'export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'
+echo
+echo
+echo '# PROXY_COMMAND: SSH through bastion to instances'
+echo '# consul members   # Get Internal IPs'
+echo '# ssh ec2-user@10.139.2.120 -o "${PROXY_COMMAND}"'
