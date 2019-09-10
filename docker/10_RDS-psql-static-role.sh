@@ -13,6 +13,8 @@ env | grep VAULT
 env | grep db_
 env | grep BASTION_HOST
 
+echo
+echo
 green "create static roles that have static usernames with dynamic credentials"
 echo
 
@@ -37,6 +39,13 @@ cyan "Step 3: Enable database secrets engin at databse/"
 pe "vault secrets enable database"
 echo
 cyan "Step 4: Configure postgresql plugin for database secrets engine"
+p "vault write database/config/postgresql \\
+        plugin_name=postgresql-database-plugin \\
+        allowed_roles=\"*\" \\
+        connection_url=postgresql://{{username}}:{{password}}@host.docker.internal:5432/postgres?sslmode=disable \\
+        username=\"root\" \\
+        password=\"rootpassword\""
+
 vault write database/config/postgresql \
         plugin_name=postgresql-database-plugin \
         allowed_roles="*" \
