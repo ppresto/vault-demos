@@ -79,8 +79,6 @@ echo $otp | xargs -n2
 mykey=$(echo ${otp} | xargs -n2 | grep -w key | awk '{ print $NF}')
 
 echo
-green "ssh -p 2222 ubuntu@127.0.0.1"
-
 cyan "verify our OTP with vault server"
 pe "vault write ssh/verify otp=${mykey}"
 
