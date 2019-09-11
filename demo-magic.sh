@@ -31,10 +31,15 @@ POST_WAIT=true
 # handy color vars for pretty prompts
 BLACK="\033[0;30m"
 BLUE="\033[0;34m"
+LBLUE="\033[1;34m"
 GREEN="\033[0;32m"
+LGREEN="\033[1;32m"
 CYAN="\033[0;36m"
+LCYAN="\033[1;36m"
 RED="\033[0;31m"
+LRED="\033[1;31m"
 PURPLE="\033[0;35m"
+LPURPLE="\033[1;35m"
 YELLOW="\033[0;33m"
 WHITE="\033[1;37m"
 COLOR_RESET="\033[0m"
@@ -42,9 +47,15 @@ COLOR_RESET="\033[0m"
 green () {
   echo -e "${GREEN}$@${COLOR_RESET}"
 }
+lgreen () {
+  echo -e "${LGREEN}$@${COLOR_RESET}"
+}
 
 red () {
   echo -e "${RED}$@${COLOR_RESET}"
+}
+lred () {
+  echo -e "${LRED}$@${COLOR_RESET}"
 }
 
 yellow () {
@@ -54,13 +65,22 @@ yellow () {
 cyan () {
   echo -e "${CYAN}$@${COLOR_RESET}"
 }
+lcyan () {
+  echo -e "${LCYAN}$@${COLOR_RESET}"
+}
 
 purple () {
   echo -e "${PURPLE}$@${COLOR_RESET}"
 }
+lpurple () {
+  echo -e "${LPURPLE}$@${COLOR_RESET}"
+}
 
 blue () {
   echo -e "${BLUE}$@${COLOR_RESET}"
+}
+lblue () {
+  echo -e "${LBLUE}$@${COLOR_RESET}"
 }
 
 ##
