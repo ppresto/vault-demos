@@ -107,17 +107,72 @@ vault write auth/oidc/role/reader \
         policies="reader"
 echo
 TMP_TOKEN=${VAULT_TOKEN}
-unset ${VAULT_TOKEN}
+unset VAULT_TOKEN
 cyan "Login with OIDC (accept Default App Auth Propmt)"
 pe "vault login -method=oidc role=\"reader\""
+
+# Set VAULT_TOKEN back to root to create the ext group and alias
+export VAULT_TOKEN=my_root_token_id
+
 echo
-cyan "Create a group in AUTH0"
+cyan "Create a 'manager' group in AUTH0"
 lpurple "https://learn.hashicorp.com/vault/identity-access-management/oidc-auth"
 p ""
+cyan "#"
+cyan "### Create an External Group in vault"
+cyan "#"
 
+echo
+cyan "Creating role 'kv-mgr' for our Auth0 User"
+p "vault write auth/oidc/role/kv-mgr \\
+        bound_audiences=\"$AUTH0_CLIENT_ID\" \\
+        allowed_redirect_uris=\"http://127.0.0.1:8200/ui/vault/auth/oidc/oidc/callback\" \\
+        allowed_redirect_uris=\"http://localhost:8250/oidc/callback\" \\
+        user_claim=\"sub\" \\
+        policies=\"reader\" \\
+        groups_claim=\"https://example.com/roles\""
+
+vault write auth/oidc/role/kv-mgr \
+        bound_audiences="$AUTH0_CLIENT_ID" \
+        allowed_redirect_uris="http://127.0.0.1:8200/ui/vault/auth/oidc/oidc/callback" \
+        allowed_redirect_uris="http://localhost:8250/oidc/callback" \
+        user_claim="sub" \
+        policies="reader" \
+        groups_claim="https://example.com/roles"
+
+echo
+cyan "Create ext group 'manager' with policy attached"
+p "vault write identity/group name=\"manager\" type=\"external\" \\
+        policies=\"manager\" \\
+        metadata=responsibility=\"Manage K/V Secrets\""
+
+group_mgr=$(vault write identity/group name="manager" type="external" \
+        policies="manager" \
+        metadata=responsibility="Manage K/V Secrets")
+group_id=$(echo ${group_mgr} | xargs -n2 | grep id | awk '{ print $2 }')
+
+accessor=$(vault auth list -format=json | jq -r '."oidc/".accessor')
+
+echo
+cyan "Create a group alias"
+p "vault write identity/group-alias name=\"kv-mgr\" \\
+        mount_accessor=${accessor} \\
+        canonical_id=\"${group_id}\""
+
+vault write identity/group-alias name="kv-mgr" \
+        mount_accessor=${accessor} \
+        canonical_id="${group_id}"
+
+echo
+cyan "#"
+cyan "### Login with the 'kv-mgr' role"
+cyan "#"
+green "Notice: the token should inherit the manager policy from the manager group since the kv-mgr belongs to the manager group."
+unset VAULT_TOKEN
+p "vault login -method=oidc role=\"kv-mgr\""
+vault login -method=oidc role="kv-mgr"
 
 echo
 cyan "Removing containers and all generated files before exiting"
 pe "docker kill vaultdev"
-#rm ${DIR}/admin-policy.hcl ${DIR}/provisioner-policy.hcl
-export VAULT_TOKEN=my_root_token_id
+rm ${DIR}/*.hcl
