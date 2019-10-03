@@ -70,6 +70,8 @@ cat <<'EOF'
             fi
             echo "KEYS : $KEYS"
             echo "Root Token: $root_token"
+        elif [[ $(curl -s ${vaultURL} | jq '.initialized') == "true" ]]; then
+            echo "Vault is already Initialized"
         else
             echo "Failed to verify vault initialization status: ${vaultURL}"
         fi
@@ -126,24 +128,44 @@ export CONSUL_HTTP_ADDR=${CONSUL_ADDR}
 alias sshbastion="ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST}"
 alias vaulttoken="export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} 'env | grep VAULT_TOKEN')"
 
-# Output Env Variables for Vault on workstation
-echo
-cyan "Cut/Paste to Setup your workstation Env"
-echo
-echo "VAULT_ADDR=$(cd ${DIR}; terraform output | grep 'export VAULT_ADDR' | head -1 | cut -d= -f2)"
-echo "CONSUL_ADDR=$(cd ${DIR}; terraform output | grep 'export CONSUL_ADDR' | head -1 | cut -d= -f2)"
-echo "BASTION_HOST=$(cd ${DIR}; terraform output bastion_ips_public)"
-echo "PRIVATE_KEY=$(cd ${DIR}; terraform output private_key_filename)"
-echo 'export VAULT_ADDR=${VAULT_ADDR}'
-echo 'export CONSUL_ADDR=${CONSUL_ADDR}'
-echo 'export CONSUL_HTTP_ADDR=${CONSUL_ADDR}'
-echo 'export BASTION_HOST=${BASTION_HOST}'
-echo 'export PROXY_COMMAND="proxycommand ssh -A ec2-user@${BASTION_HOST} -W %h:%p"'
-echo "alias sshbastion='ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST}'"
-echo "alias vaulttoken='export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'"
-echo 'export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'
-echo
-echo
+(
+cat <<'EOF'
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+VAULT_ADDR=$(cd ${DIR}; terraform output | grep 'export VAULT_ADDR' | head -1 | cut -d= -f2)
+CONSUL_ADDR=$(cd ${DIR}; terraform output | grep 'export CONSUL_ADDR' | head -1 | cut -d= -f2)
+BASTION_HOST=$(cd ${DIR}; terraform output bastion_ips_public)
+PRIVATE_KEY=$(cd ${DIR}; terraform output private_key_filename)
+
+export VAULT_ADDR=${VAULT_ADDR}
+export CONSUL_ADDR=${CONSUL_ADDR}
+export CONSUL_HTTP_ADDR=${CONSUL_ADDR}
+export BASTION_HOST=${BASTION_HOST}
+export PROXY_COMMAND="proxycommand ssh -A ec2-user@${BASTION_HOST} -W %h:%p"
+alias sshbastion='ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST}'
+alias vaulttoken='export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")'
+export $(ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")
+
 echo '# PROXY_COMMAND: SSH through bastion to instances'
 echo '# consul members   # Get Internal IPs'
-echo '# ssh ec2-user@10.139.2.120 -o "${PROXY_COMMAND}"'
+echo '# vault status'    # Get Vault status
+echo '# sshbastion'      # alias - ssh to aws bastion host
+echo '# vaulttoken'      # alias - ssh to bastion host and get root Vault Token
+echo '# ssh ec2-user@${BASTION_HOST} -o "${PROXY_COMMAND}"'
+
+EOF
+) > ${DIR}/vaultENV.sh
+chmod 750 vaultENV.sh
+
+# Output Env Variables for Vault on workstation
+echo
+cyan "Setup your workstation Env"
+echo
+echo "\$ source vaultENV.sh"
+echo
+cyan "SSH to your bastion host and run vaultSetup.sh to init/unseal your cluster"
+echo "\$ sshbastion"
+echo
+cyan "Run './vaultAdmin.sh upgrade' from the bastion host to upgrade your vault version"

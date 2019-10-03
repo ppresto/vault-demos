@@ -86,7 +86,10 @@ $ terraform apply
 ### Step 4: Configure
 
 ** This is for development only!! **
-Run `./vaultSetup_template.sh` from your build system.  This will scp/ssh to the bastion host to initialize, unseal, and setup vault your environment variables.  This will set your VAULT_TOKEN to the ROOT Token, and copy the adminVault.sh script to the bastion host to automate admin tasks like checking cluster health, and upgrading to v1.2.2.  FYI:  This script uses your Shamir Keys which were added to your ec2-user's ~/.bashrc by vaultSetup_template.sh for unsealing nodes that may have been restarted or shutdown during dev.
+Before starting the setup give consul and ec2 instances enough time to fully start up. you can verify this by seeing 7 consul members
+`consul members`
+
+Run `./vaultSetup_template.sh` from your build system.  This will scp/ssh to the bastion host to initialize, unseal, and setup vault your environment variables.  This will set your VAULT_TOKEN to the ROOT Token, and copy the adminVault.sh script to the bastion host to automate admin tasks like checking cluster health, and upgrading to v1.2.2.  FYI:  This script uses your Shamir Keys which were added to your ec2-user's ~/.bashrc by vaultSetup_template.sh for unsealing nodes that may have been restarted or shutdown during dev.  This is highly insecure so don't do this in any production env.
 
 ```
 $ ./vaultSetup_template.sh
@@ -96,18 +99,7 @@ Copying & Running initial Vault Setup Scripts on Bastion host
 vaultSetup.sh                                                                                                                                100% 2399    41.0KB/s
 vaultAdmin.sh                                                                                                                                100% 5789   103.4KB/s 
 
-Cut/Paste to Setup your workstation Env
-
-VAULT_ADDR=http://vault-lb-c838a21c-1164609434.us-west-2.elb.amazonaws.com:8200
-CONSUL_ADDR=http://consul-lb-5e3599f1-1525620606.us-west-2.elb.amazonaws.com:8500
-BASTION_HOST=54.189.143.98
-PRIVATE_KEY=ppresto-vault-dev-47bc6865.key.pem
-export VAULT_ADDR=${VAULT_ADDR}
-export $(ssh -A -i ${PRIVATE_KEY} ec2-user@${BASTION_HOST} "env | grep VAULT_TOKEN")
-export CONSUL_ADDR=${CONSUL_ADDR}
-export CONSUL_HTTP_ADDR=${CONSUL_ADDR}
-alias sshbastion='ssh -A -i ppresto-vault-dev-47bc6865.key.pem ec2-user@54.189.143.98'
-alias vaulttoken='export VAULT_TOKEN=xxxxxxxx'  # useful to reset root token during testing
+source vaultENV.sh
 ```
 
 ## Step 5: Administration

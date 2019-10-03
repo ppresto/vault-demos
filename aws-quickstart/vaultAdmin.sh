@@ -9,6 +9,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 VER="1.2.2"
 COUNT=0
+source $HOME/.bashrc
 
 nodeUnseal() {
   node=$1
