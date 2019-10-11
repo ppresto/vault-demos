@@ -7,8 +7,26 @@ if [[ -z ${DEMO_WAIT} ]];then
 fi
 
 # Demo magic gives wrappers for running commands in demo mode.   Also good for learning via CLI.
-. ${DIR}/../../demo-magic.sh -d -p -w ${DEMO_WAIT}
+. ${DIR}/../demo-magic.sh -d -p -w ${DEMO_WAIT}
 
+#docker run -d --rm -p 8200:8200 --name vaultdev \
+#    --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=my_root_token_id' -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' vault:1.2.1
+
+docker run -d --rm -p 8200:8200 --name vaultdev \
+    --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=my_root_token_id' -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' vault
+
+export VAULT_TOKEN=my_root_token_id
+export VAULT_ADDR="http://127.0.0.1:8200"
+
+echo
+cyan "Enable Audit Logging"
+pe "vault audit enable file file_path=/vault/logs/vault_audit.log"
+
+echo
+cyan "Tail Audit Log"
+pe "${DIR}/../launch_iterm.sh $HOME \"docker exec vaultdev tail -f /vault/logs/vault_audit.log | jq\" &"
+
+echo
 green "We will create a policy for team-se that will allow them to writ k/v secrets everywhere but /secret/foo and then test the policy.  This policy will permit viewing policies too."
 cyan "Create a policy for team-se"
 pe 'vault policy write team-se-policy -<<EOF
@@ -32,13 +50,15 @@ path "secret/data/foo" {
 EOF'
 
 echo
-cyan "List Policies"
-pe "vault policy list"
-
 cyan "View Policy 'team-se-policy'"
 pe "vault policy read team-se-policy"
 
-cyan "Test Policy 'team-se-policy'"
+echo
+cyan "As the Vault Admin add a secret to secret/foo which isn't writeable by our team-se policy"
+pe "vault kv put secret/foo robot=beepboopfoo"
+
+echo
+cyan "Lets test our new policy 'team-se-policy'"
 green "To use a policy, first create a token, and assign it to the policy"
 p "vault token create -policy=team-se-policy"
 new_token=$(vault token create -policy=team-se-policy)
@@ -53,12 +73,29 @@ echo
 green "Next login using the new token"
 pe "vault login ${token_value}"
 
-green "Verify we can write data to secret/, but only read from secret/foo"
-green "write kv data to secret/bar: "
+green "Verify we can write data to secret/bar"
+green "write kv data to secret/bar "
 pe "vault kv put secret/bar robot=beepboop"
+echo
+green "read kv data from secret/bar"
+pe "vault kv get secret/bar"
+echo
+green "read kv data from an undefined path (secret/bar/undefined)"
+pe "vault kv get secret/bar/undefined"
+
 echo
 green "Now lets attempt to write data to secret/foo ... "
 pe "vault kv put secret/foo robot=beepboop"
-red "Writing to secret/foo should have Failed"
+red "Writing to secret/foo should fail"
+echo
+green "Now lets attempt to read data to secret/foo ... "
+pe "vault kv get secret/foo"
 
 export VAULT_TOKEN=${temp_token}
+echo
+cyan "Removing containers and all generated files before exiting"
+pe "docker kill vaultdev"
+# Kill terminal window
+cpid=$!
+ppid=$(ps -o ppid= -p $cpid)
+# kill terminal window not working...
