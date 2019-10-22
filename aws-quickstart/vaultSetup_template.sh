@@ -17,10 +17,18 @@ PRIVATE_KEY=$(cd ${DIR}; terraform output private_key_filename)
 
 # Note:  If ssh agent has too many keys it can break things.  Try cleaning them up with "ssh-add -D and readding manually"
 #
+# Create SSH Key Locally if using TFE
+if [[ ! -f ${PRIVATE_KEY} ]]; then
+    echo "$(terraform output private_key_pem)" \
+      > ${PRIVATE_KEY} \
+      && chmod 0600 ${PRIVATE_KEY}
+fi
+
 # Add TF generated SSH Key
 if [[ $(ssh-add -l | grep ${PRIVATE_KEY}) ]]; then
     echo "Key already added.  Found - ${PRIVATE_KEY}"
 else
+    ssh-add -D
     ssh-add ${PRIVATE_KEY}
 fi
 

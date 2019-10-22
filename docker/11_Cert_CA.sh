@@ -17,7 +17,7 @@ env | grep BASTION_HOST
 green "create Certificate Root Authority"
 echo
 
-cyan "Step 1: Start Vault and PostgreSQL Docker Containers for this exercise"
+cyan "Step 1: Start Vault for this exercise"
 pe "docker run -d --rm -p 8200:8200 --name vaultdev \\
     --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=my_root_token_id' -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' vault"
 
