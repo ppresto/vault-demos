@@ -89,7 +89,9 @@ $ terraform apply
 Before starting the setup give consul and ec2 instances enough time to fully start up. you can verify this by seeing 7 consul members
 `consul members`
 
-Run `./vaultSetup_template.sh` from your build system.  This will scp/ssh to the bastion host to initialize, unseal, and setup vault your environment variables.  This will set your VAULT_TOKEN to the ROOT Token, and copy the adminVault.sh script to the bastion host to automate admin tasks like checking cluster health, and upgrading to v1.2.2.  FYI:  This script uses your Shamir Keys which were added to your ec2-user's ~/.bashrc by vaultSetup_template.sh for unsealing nodes that may have been restarted or shutdown during dev.  This is highly insecure so don't do this in any production env.
+Run `./vaultSetup_template.sh` from your build system.
+* depends on `terraform output` which takes time if using remote.tf (ex: TFC/TFE).  
+This will scp/ssh to the bastion host to initialize, unseal, and setup vault your environment variables.  This will set your VAULT_TOKEN to the ROOT Token, and copy the adminVault.sh script to the bastion host to automate admin tasks like checking cluster health, and upgrading to v1.2.2.  FYI:  This script uses your Shamir Keys which were added to your ec2-user's ~/.bashrc by vaultSetup_template.sh for unsealing nodes that may have been restarted or shutdown during dev.  This is highly insecure so don't do this in any production env.
 
 ```
 $ ./vaultSetup_template.sh
