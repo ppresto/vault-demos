@@ -8,6 +8,7 @@ docker image inspect ${POSTGRES_IMAGE} &> /dev/null
 docker rm postgres &> /dev/null
 docker run \
   --name postgres \
+  --rm \
   -p 5432:5432 \
   -e POSTGRES_PASSWORD=${PGPASSWORD}  \
   -v ${PWD}/sql:/docker-entrypoint-initdb.d \

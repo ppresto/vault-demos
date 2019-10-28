@@ -29,7 +29,10 @@ variable "bastion_image_id" { default = "" }
 
 variable "network_tags" {
   type    = "map"
-  default = { }
+  default = { 
+    owner = "ppresto"
+    ttl   = 7
+  }
 }
 
 # ---------------------------------------------------------------------------------------------------------------------

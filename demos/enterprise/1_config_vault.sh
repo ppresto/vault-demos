@@ -44,7 +44,7 @@ yellow "export VAULT_TOKEN=notsosecure"
 yellow "export VAULT_ADDR=\"http://${IP_ADDRESS}:8200\""
 
 vault status
-open "http://${IP_ADDRESS}:8200"
+#open "http://${IP_ADDRESS}:8200"
 
 echo
 vault read sys/license
@@ -60,16 +60,16 @@ echo
 cyan "Enable Vault Audit Logging"
 pe "vault audit enable file file_path=/tmp/vault_audit.log"
 
-echo
-cyan "Tail Vault Audit Log"
-${DIR}/launch_iterm.sh /tmp "tail -f /tmp/vault_audit.log | jq " &
-echo
+#echo
+#cyan "Tail Vault Audit Log"
+#${DIR}/launch_iterm.sh /tmp "tail -f /tmp/vault_audit.log | jq " &
+#echo
 
 # Global Policies
-./9_egp_policies.sh
+./egp_policies.sh
 
 # Configure Namespace /root, /IT.  As IT team configure /IT/hr
-./3_config_ns_main.sh
+./config_ns_main.sh
 
 
 # Populate IT Data for Validation Testing
@@ -96,9 +96,10 @@ cyan    "  Demo Vault Services"
 lblue   "###########################################"
 p
 
-./test_hr.sh
+# Run HR Tests for Setup Demo
+#./test_hr.sh
 
-echo
-cyan "Clean Up"
-pe "./shutdown.sh"
-kill % 1
+#echo
+#cyan "Clean Up"
+#pe "./shutdown.sh"
+#kill % 1

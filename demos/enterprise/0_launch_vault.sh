@@ -17,8 +17,8 @@ lcyan "  Setup Vault Environment"
 lblue "###########################################"
 echo
 
-./2_launch_db.sh
-./2_launch_ldap.sh
+./launch_db.sh
+./launch_ldap.sh
 # Launch Vault in its own window
 echo
 cyan "Launch Vault"

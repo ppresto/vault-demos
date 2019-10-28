@@ -20,12 +20,12 @@ p
 
 echo
 green "Enable LDAP Auth Method"
-./6_enable_ldap_auth.sh
+./enable_ldap_auth.sh
 
 echo
 green "Enable KV Secrets for all Users"
 pe "vault secrets enable -path=${KV_PATH} -version=${KV_VERSION} kv"
-./7_generate_dynamic_policy.sh
+./generate_dynamic_policy.sh
 
 # associate policies
 echo
@@ -106,10 +106,10 @@ pe "vault policy write -namespace=IT/hr it-hr-admin policies/it-hr-admin.hcl"
 #vault write -namespace=IT/hr identity/group name="igroup_it-hr" policies="it-admin" member_group_ids=$it_groupid
 
 export VAULT_NAMESPACE="IT/hr"
-./5_enable_transit.sh
-./5_transit_policy.sh
-./4_enable_db.sh
-./4_db_policy.sh
+./enable_transit.sh
+./transit_policy.sh
+./enable_db.sh
+./db_policy.sh
 unset VAULT_NAMESPACE
 
 # hr_groupid=$(vault read -format=json /identity/group/name/egroup_hr | jq -r ".data.id")

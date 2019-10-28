@@ -10,6 +10,7 @@ cyan "Starting LDAP Server"
 docker pull ${IMAGE}
 docker rm openldap &> /dev/null
 docker run --hostname ${LDAP_HOSTNAME} \
+  --rm \
   -p 389:389 \
   -p 689:689 \
   -e LDAP_ORGANISATION="${LDAP_ORGANISATION}" \
