@@ -1,0 +1,9 @@
+gcp_region = "us-west1"
+gcp_zone = "us-west1-b"
+gcp_project = "ppresto-gcp-245517"
+cluster_name = "k8s-vault-cluster"
+initial_node_count = 3
+master_username = "ppresto"
+master_password = "K8spass!"
+node_machine_type = "n1-standard-2"
+node_disk_size = "30"

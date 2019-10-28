@@ -1,0 +1,327 @@
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Unable to listen on port 8500: Listeners failed to create with the following errors: [Unable to create listener: Error listen tcp4 127.0.0.1:8500: bind: address already in use Unable to create listener: Error listen tcp6 [::1]:8500: bind: address already in use]
+error: Unable to listen on any of the requested ports: [{8500 8500}]
+E0927 13:46:09.711533   41370 portforward.go:224] lost connection to pod
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+E0930 12:35:45.218238   43269 portforward.go:224] lost connection to pod
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+E1003 15:30:48.649067   10512 portforward.go:224] lost connection to pod
+Unable to connect to the server: dial tcp 192.168.99.100:8443: connect: host is down
+Forwarding from [::1]:8500 -> 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+E1004 12:13:40.391434   42806 portforward.go:391] an error occurred forwarding 8500 -> 8500: error forwarding port 8500 to pod ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839, uid : Error: No such container: ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839
+E1004 12:13:40.397040   42806 portforward.go:391] an error occurred forwarding 8500 -> 8500: error forwarding port 8500 to pod ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839, uid : Error: No such container: ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839
+Handling connection for 8500
+E1004 12:13:40.497726   42806 portforward.go:391] an error occurred forwarding 8500 -> 8500: error forwarding port 8500 to pod ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839, uid : Error: No such container: ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839
+Handling connection for 8500
+Handling connection for 8500
+E1004 12:13:40.719805   42806 portforward.go:391] an error occurred forwarding 8500 -> 8500: error forwarding port 8500 to pod ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839, uid : Error: No such container: ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839
+Unable to listen on port 8500: Listeners failed to create with the following errors: [Unable to create listener: Error listen tcp4 127.0.0.1:8500: bind: address already in use Unable to create listener: Error listen tcp6 [::1]:8500: bind: address already in use]
+error: Unable to listen on any of the requested ports: [{8500 8500}]
+E1004 12:14:10.674794   42806 portforward.go:353] error creating forwarding stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:14:40.681165   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:15:44.721458   42806 portforward.go:391] an error occurred forwarding 8500 -> 8500: error forwarding port 8500 to pod ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839, uid : Error: No such container: ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839
+Handling connection for 8500
+E1004 12:16:14.783723   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:17:14.814511   42806 portforward.go:353] error creating forwarding stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:17:14.945021   42806 portforward.go:391] an error occurred forwarding 8500 -> 8500: error forwarding port 8500 to pod ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839, uid : Error: No such container: ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839
+Handling connection for 8500
+E1004 12:17:44.969840   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+Handling connection for 8500
+E1004 12:17:55.018422   42806 portforward.go:391] an error occurred forwarding 8500 -> 8500: error forwarding port 8500 to pod ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839, uid : Error: No such container: ea98e75b4889c9770908f1633dbe022bccb696c17b532a59128cc8ec208fd839
+E1004 12:18:24.919159   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:18:54.922909   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+Handling connection for 8500
+E1004 12:19:54.946544   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+E1004 12:19:54.993264   42806 portforward.go:353] error creating forwarding stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:20:24.995238   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:21:05.095676   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+Handling connection for 8500
+E1004 12:21:55.018401   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:21:55.070429   42806 portforward.go:353] error creating forwarding stream for port 8500 -> 8500: Timeout occured
+E1004 12:22:25.021060   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+Handling connection for 8500
+Unable to listen on port 8500: Listeners failed to create with the following errors: [Unable to create listener: Error listen tcp4 127.0.0.1:8500: bind: address already in use Unable to create listener: Error listen tcp6 [::1]:8500: bind: address already in use]
+error: Unable to listen on any of the requested ports: [{8500 8500}]
+Handling connection for 8500
+Handling connection for 8500
+E1004 12:25:58.978380   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+E1004 12:25:58.978370   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+E1004 12:27:54.500448   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:27:54.548372   42806 portforward.go:353] error creating forwarding stream for port 8500 -> 8500: Timeout occured
+E1004 12:28:24.517289   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+Handling connection for 8500
+E1004 12:28:59.543544   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:28:59.596913   42806 portforward.go:353] error creating forwarding stream for port 8500 -> 8500: Timeout occured
+E1004 12:29:29.551040   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+Handling connection for 8500
+E1004 12:30:29.582449   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+E1004 12:30:29.582473   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:30:59.669326   42806 portforward.go:353] error creating forwarding stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+Handling connection for 8500
+Unable to listen on port 8500: Listeners failed to create with the following errors: [Unable to create listener: Error listen tcp4 127.0.0.1:8500: bind: address already in use Unable to create listener: Error listen tcp6 [::1]:8500: bind: address already in use]
+error: Unable to listen on any of the requested ports: [{8500 8500}]
+E1004 12:31:48.090757   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+E1004 12:31:48.090791   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:32:18.099188   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+Handling connection for 8500
+E1004 12:32:48.137043   42806 portforward.go:331] error creating error stream for port 8500 -> 8500: Timeout occured
+Handling connection for 8500
+E1004 12:32:48.186661   42806 portforward.go:353] error creating forwarding stream for port 8500 -> 8500: Timeout occured
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from [::1]:8500 -> 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+E1004 15:42:32.741858   50283 portforward.go:224] lost connection to pod
+Forwarding from [::1]:8500 -> 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+E1007 19:19:52.937157   64198 portforward.go:224] lost connection to pod
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+error: unable to forward port because pod is not running. Current status=Pending
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from [::1]:8500 -> 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Forwarding from 127.0.0.1:8500 -> 8500
+Forwarding from [::1]:8500 -> 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+Handling connection for 8500
+E1028 13:32:55.102679   18502 portforward.go:224] lost connection to pod
+E1028 13:32:55.102905   18502 portforward.go:391] an error occurred forwarding 8500 -> 8500: error forwarding port 8500 to pod df5bf8d3d4cfec39a58dd9aef4c03181c1bd9da060709f6ef86beb239f869e09, uid : exit status 143: 

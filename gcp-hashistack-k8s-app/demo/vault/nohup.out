@@ -1,0 +1,703 @@
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+E0927 13:45:35.889438   41388 portforward.go:224] lost connection to pod
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+E1002 15:24:59.027111   43288 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1002 15:25:10.678124   43288 portforward.go:224] lost connection to pod
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+E1003 15:30:48.649067   10629 portforward.go:224] lost connection to pod
+Unable to connect to the server: dial tcp 192.168.99.100:8443: i/o timeout
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+E1004 11:57:25.746856   42924 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod a89280e029f1a49a239eeebfaeba7ec57dd5e0e7fc5714bba55c645204e69830, uid : container not running (a89280e029f1a49a239eeebfaeba7ec57dd5e0e7fc5714bba55c645204e69830)
+E1004 11:57:25.748652   42924 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod a89280e029f1a49a239eeebfaeba7ec57dd5e0e7fc5714bba55c645204e69830, uid : container not running (a89280e029f1a49a239eeebfaeba7ec57dd5e0e7fc5714bba55c645204e69830)
+Handling connection for 8200
+Handling connection for 8200
+E1004 11:57:37.573075   42924 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod a89280e029f1a49a239eeebfaeba7ec57dd5e0e7fc5714bba55c645204e69830, uid : container not running (a89280e029f1a49a239eeebfaeba7ec57dd5e0e7fc5714bba55c645204e69830)
+Handling connection for 8200
+Handling connection for 8200
+E1004 11:58:02.594242   42924 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod a89280e029f1a49a239eeebfaeba7ec57dd5e0e7fc5714bba55c645204e69830, uid : Error: No such container: a89280e029f1a49a239eeebfaeba7ec57dd5e0e7fc5714bba55c645204e69830
+Handling connection for 8200
+E1004 11:58:07.526447   42924 portforward.go:353] error creating forwarding stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+E1004 11:58:19.133174   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+E1004 11:58:32.981835   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+E1004 11:58:37.530373   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+E1004 11:58:59.161626   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 11:59:03.239563   42924 portforward.go:353] error creating forwarding stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+E1004 11:59:07.533503   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 11:59:33.273303   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+E1004 11:59:39.490958   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 11:59:39.548701   42924 portforward.go:353] error creating forwarding stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:00:03.309416   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+E1004 12:00:21.135165   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:00:21.135188   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:00:33.401261   42924 portforward.go:353] error creating forwarding stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+E1004 12:01:01.492766   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:01:01.493068   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:01:03.440803   42924 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:22:53.315679   46021 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod bd1cf3dfaeeffb443e3f80d64da8a4de798d4a51c7ea1da4540060ab6cd7b21d, uid : Error: No such container: bd1cf3dfaeeffb443e3f80d64da8a4de798d4a51c7ea1da4540060ab6cd7b21d
+E1004 12:22:53.315679   46021 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod bd1cf3dfaeeffb443e3f80d64da8a4de798d4a51c7ea1da4540060ab6cd7b21d, uid : Error: No such container: bd1cf3dfaeeffb443e3f80d64da8a4de798d4a51c7ea1da4540060ab6cd7b21d
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:23:03.762290   46021 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod bd1cf3dfaeeffb443e3f80d64da8a4de798d4a51c7ea1da4540060ab6cd7b21d, uid : Error: No such container: bd1cf3dfaeeffb443e3f80d64da8a4de798d4a51c7ea1da4540060ab6cd7b21d
+E1004 12:23:33.716088   46021 portforward.go:353] error creating forwarding stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:23:45.111299   46021 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod bd1cf3dfaeeffb443e3f80d64da8a4de798d4a51c7ea1da4540060ab6cd7b21d, uid : Error: No such container: bd1cf3dfaeeffb443e3f80d64da8a4de798d4a51c7ea1da4540060ab6cd7b21d
+E1004 12:24:15.022749   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:24:56.017141   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:24:56.017176   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:25:37.196625   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:25:37.243319   46021 portforward.go:353] error creating forwarding stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:27:52.923770   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:27:52.930957   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:28:04.439981   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:28:04.493395   46021 portforward.go:353] error creating forwarding stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:28:44.765725   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:28:44.769339   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Unable to listen on port 8200: Listeners failed to create with the following errors: [Unable to create listener: Error listen tcp4 127.0.0.1:8200: bind: address already in use Unable to create listener: Error listen tcp6 [::1]:8200: bind: address already in use]
+error: Unable to listen on any of the requested ports: [{8200 8200}]
+E1004 12:29:25.809122   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:29:25.855169   46021 portforward.go:353] error creating forwarding stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:29:38.458768   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:30:06.518516   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:30:06.518517   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:30:46.752783   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:30:46.812815   46021 portforward.go:353] error creating forwarding stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:31:28.420203   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:31:28.420894   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:32:08.520004   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:32:08.605696   46021 portforward.go:353] error creating forwarding stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+E1004 12:32:48.777939   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+E1004 12:32:48.778000   46021 portforward.go:331] error creating error stream for port 8200 -> 8200: Timeout occured
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+E1004 15:42:32.596900   52288 portforward.go:331] error creating error stream for port 8200 -> 8200: EOF
+E1004 15:42:32.596916   52288 portforward.go:224] lost connection to pod
+E1004 15:42:32.596916   52288 portforward.go:331] error creating error stream for port 8200 -> 8200: EOF
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+E1007 19:19:08.071400   64240 portforward.go:224] lost connection to pod
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from [::1]:8200 -> 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from [::1]:8200 -> 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+E1007 23:34:14.216432   73891 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod 1b9367145968ba0262cc431884ee6b758177afad92d2ac6cc9cc34df904a8f84, uid : container not running (1b9367145968ba0262cc431884ee6b758177afad92d2ac6cc9cc34df904a8f84)
+E1007 23:34:14.216433   73891 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod 1b9367145968ba0262cc431884ee6b758177afad92d2ac6cc9cc34df904a8f84, uid : container not running (1b9367145968ba0262cc431884ee6b758177afad92d2ac6cc9cc34df904a8f84)
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Forwarding from 127.0.0.1:8200 -> 8200
+Forwarding from [::1]:8200 -> 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+Handling connection for 8200
+E1028 13:32:55.102632   18514 portforward.go:224] lost connection to pod
+E1028 13:32:55.102862   18514 portforward.go:391] an error occurred forwarding 8200 -> 8200: error forwarding port 8200 to pod d1ef011a7cd9dc2d555c3c206131847120acf77c5f080afd0d4f00ca345ebc1f, uid : exit status 143: 
