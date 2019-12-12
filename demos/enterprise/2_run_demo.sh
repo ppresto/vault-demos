@@ -75,6 +75,9 @@ echo
 lblue "####################################################"
 lcyan "  Access the HR App's DB using Dynamic Credentials"
 lblue "####################################################"
+# Open pg4admin UI
+open "http://${PGHOST}"
+
 echo
 pe "export VAULT_NAMESPACE=\"IT/hr\""
 echo

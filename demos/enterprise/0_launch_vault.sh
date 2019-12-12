@@ -18,6 +18,7 @@ lblue "###########################################"
 echo
 
 ./launch_db.sh
+./launch_pg4admin.sh
 ./launch_ldap.sh
 # Launch Vault in its own window
 echo
