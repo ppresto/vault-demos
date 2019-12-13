@@ -14,7 +14,7 @@ docker run \
   -v ${PWD}/sql:/docker-entrypoint-initdb.d \
   -d ${POSTGRES_IMAGE}
 
-echo "Database is running on ${PGHOST}:5432"
+echo "Database is running on ${PGHOST}:5432 as ${PGUSER} with pass: ${PGPASSWORD}"
 
 
 # pg4admin : https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html

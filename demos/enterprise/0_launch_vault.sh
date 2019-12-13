@@ -22,5 +22,5 @@ echo
 ./launch_ldap.sh
 # Launch Vault in its own window
 echo
-cyan "Launch Vault"
+cyan "Launching Vault"
 vault server -dev
