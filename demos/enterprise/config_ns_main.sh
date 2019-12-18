@@ -44,7 +44,7 @@ vault secrets enable -namespace=IT -path=kv-blog -version=2 kv
 vault policy write -namespace=IT kv-blog policies/kv-blog-it-policy.hcl
 vault policy write -namespace=IT it-admin policies/it-admin.hcl
 vault policy write -namespace=IT it-admin2 policies/it-admin2.hcl
-
+vault policy write -namespace=IT it-okta-policy policies/it-okta-mfa.hcl
 echo
 # "Create Ext/Int Group for IT"
 cyan "Map IT namespace policies to members of the 'it' LDAP group"
@@ -56,7 +56,7 @@ vault write -format=json identity/group-alias name="it" mount_accessor=$accessor
 #echo
 #cyan "Create Internal Group with member (egroup_it)"
 # Create an Internal group in the namespace (ns-it) that has the external group as a member.
-vault write -namespace=IT identity/group name="igroup_it" policies="kv-blog,it-admin,it-admin2" member_group_ids=$it_groupid
+vault write -namespace=IT identity/group name="igroup_it" policies="kv-blog,it-admin,it-admin2,it-okta-policy" member_group_ids=$it_groupid
 
 # "Create Ext/Int Group for IT/hr"
 #accessor=$(vault auth list -format=json | jq -r '.["ldap/"].accessor')
@@ -92,6 +92,8 @@ cyan "Create kv-blog kv store"
 vault secrets enable -namespace=IT/hr -path=kv-blog -version=2 kv
 cyan "Create kv-blog policy"
 vault policy write -namespace=IT/hr kv-blog policies/kv-blog-hr-policy.hcl
+cyan "create mfa policy"
+vault policy write -namespace=IT/hr hr-okta-policy policies/hr-okta-mfa.hcl
 cyan "Create it-hr-admin policy"
 pe "vault policy write -namespace=IT/hr it-hr-admin policies/it-hr-admin.hcl"
 
@@ -113,4 +115,4 @@ export VAULT_NAMESPACE="IT/hr"
 unset VAULT_NAMESPACE
 
 # hr_groupid=$(vault read -format=json /identity/group/name/egroup_hr | jq -r ".data.id")
-pe "vault write -namespace=IT/hr identity/group name="igroup_hr" policies="it-hr-admin,db-hr,transit-hr,kv-user-template" member_group_ids=$hr_groupid"
+pe "vault write -namespace=IT/hr identity/group name="igroup_hr" policies="it-hr-admin,db-hr,transit-hr,kv-user-template,hr-okta-policy" member_group_ids=$hr_groupid"

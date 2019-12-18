@@ -72,14 +72,21 @@ pe "vault kv put kv-blog/frank/aws/config/root access_key=AAAAABBBBBCCCCCDDDDD s
 
 echo
 echo
-lblue "####################################################"
-lcyan "  Access the HR App's DB using Dynamic Credentials"
-lblue "####################################################"
-# Open pg4admin UI
-open "http://${PGHOST}"
+lblue "##########################################################"
+lcyan "  Access the HR App's DB using Dynamic Credentials + MFA"
+lblue "##########################################################"
+yellow "We will use OKTA to enable MFA for the HR App's DB"
+echo
+./enable_okta_mfa.sh
+echo
+green "Review our HR DB Policy requiring MFA"
+pe "cat policies/hr-okta-mfa.hcl"
 
 echo
 pe "export VAULT_NAMESPACE=\"IT/hr\""
+
+# Open pg4admin UI
+open "http://${PGHOST}"
 echo
 p "vault read db-blog/creds/mother-hr-full-1h"
 creds=$(vault read db-blog/creds/mother-hr-full-1h)
