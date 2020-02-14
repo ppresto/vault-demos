@@ -5,13 +5,13 @@ export VAULT_TOKEN=notsosecure
 
 echo
 lblue "####################################"
-lcyan "  Enable OKTA MFA"
+lcyan "  Enable MFA for the HR App DB Creds"
 lblue "####################################"
 echo
 
 accessor=$(vault auth list -format=json | jq -r '.["ldap/"].accessor')
 
-green "Configure Okta"
+green "Configure Okta (my_okta)"
 p "vault write sys/mfa/method/okta/my_okta \\
     mount_accessor=${accessor} \\
     org_name=\"dev-394102\" \\
@@ -25,6 +25,11 @@ vault write sys/mfa/method/okta/my_okta \
     base_url="okta.com" \
     username_format="{{alias.name}}@example.com" \
     api_token="001LFdNA7Z7Sa_pfcwFkstgRoEu4esZUw4tcDhrYht"
+
+echo
+green "Review our HR DB Policy requiring MFA"
+pe "cat policies/hr-okta-mfa.hcl"
+p
 
 #green "Write MFA Policy"
 #cat ${DIR}/policies/okta_mfa.hcl

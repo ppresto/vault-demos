@@ -71,18 +71,13 @@ pe "vault kv put kv-blog/frank/aws/config/root access_key=AAAAABBBBBCCCCCDDDDD s
 pe "vault kv put kv-blog/frank/aws/config/root access_key=AAAAABBBBBCCCCCDDDDD secret_key=AAAAABBBBBCCCCCDDDDDAAAAABBBBBCCCCCDDDDD"
 
 echo
-echo
-lblue "##########################################################"
-lcyan "  Access the HR App's DB using Dynamic Credentials + MFA"
-lblue "##########################################################"
-yellow "We will use OKTA to enable MFA for the HR App's DB"
-echo
 ./enable_okta_mfa.sh
 echo
-green "Review our HR DB Policy requiring MFA"
-pe "cat policies/hr-okta-mfa.hcl"
-
 echo
+lblue "##########################################################"
+lcyan "  Access the HR App's DB using Dynamic Credentials"
+lblue "##########################################################"
+
 pe "export VAULT_NAMESPACE=\"IT/hr\""
 
 # Open pg4admin UI
@@ -153,4 +148,3 @@ green "Notice the value is still encrypted in the database.   It should only be 
 pe "QUERY=\"select email,id from hr.people\""
 psql
 unset VAULT_NAMESPACE
-
