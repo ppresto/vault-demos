@@ -2,6 +2,9 @@
 
 # This is designed to be either run from a Mac or via the included CentOS vagrant host
 # Modify accordingly to run on your local system if outside these bounds
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 case ${OSTYPE} in
   darwin*)
     IP_ADDRESS=$(ipconfig getifaddr en0 || echo "127.0.0.1")
@@ -71,7 +74,7 @@ fi
 
 # Demo magic gives wrappers for running commands in demo mode.   Also good for learning via CLI.
 
-. demo-magic.sh -d -p -w ${DEMO_WAIT}
+. ${DIR}/demo-magic.sh -d -p -w ${DEMO_WAIT}
 
 ### FUNCTIONS ### 
 # For running psql from the postgres docker container.  

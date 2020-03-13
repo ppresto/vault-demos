@@ -22,6 +22,9 @@ path "hr/sys/mounts/*" {
 path "hr/sys/mounts" {
   capabilities = [ "read" ]
 }
+path "hr/*" {
+  capabilities = [ "read", "list" ]
+}
 
 # Allow UI updates in Enterprise
 path "hr/sys/capabilities-self" {

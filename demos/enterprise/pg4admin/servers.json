@@ -3,7 +3,7 @@
         "1": {
             "Name": "mother-hr",
             "Group": "Servers",
-            "Host": "10.33.107.142",
+            "Host": "192.168.1.16",
             "Port": 5432,
             "MaintenanceDB": "postgres",
             "Username": "postgres",
