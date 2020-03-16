@@ -95,7 +95,7 @@ pe "QUERY='select email,id from hr.people;'"
 psql
 echo
 lblue "###########################################"
-lcyan "  Encrypt Alice's id using EaaS (Transit)"
+lcyan "  Decrypt Alice's id using EaaS (Transit)"
 lblue "###########################################"
 yellow "WARNING:  If your app logic can't consume both encrypted and unencrypted values schedule a maint window for this activity"
 echo
