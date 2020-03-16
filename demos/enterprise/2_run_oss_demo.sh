@@ -10,34 +10,6 @@ unset VAULT_TOKEN
 open "http://${IP_ADDRESS}:8200"
 
 echo
-lblue "#  Vault Admin - root"
-cyan "  Vault Enterprise Namespace: /"
-yellow "     * Audit Logging enabled"
-yellow "     * Global EGP Policies (AWS keys)"
-yellow "     * Auth Method: corporate LDAP only"
-yellow "     * Users: personal K/V store per user"
-echo
-lblue "#  IT Team - deepak"
-cyan "  Vault Enterprise Namespace: /IT"
-yellow "     * IT Team are administrators"
-yellow "     * No Auth Method or EGP/RGP policy updates"
-yellow "     * Can create sub namespaces (ex: /IT/hr)"
-echo
-lblue "#  HR App Team - frank"
-cyan "  Vault Enterprise Namespace: /IT/hr"
-yellow  "    * The HR App Team are operators"
-yellow  "    * Enable Transit (EaaS)"
-yellow  "    * Enable DB Engine (Dynamic Secrets)"
-echo
-p
-
-echo
-cyan "Tail Vault Audit Log"
-p "tail -f /tmp/vault_audit.log | jq"
-${DIR}/launch_iterm.sh /tmp "tail -f /tmp/vault_audit.log | jq " &
-echo
-
-echo
 lblue "#######################"
 lcyan "  HR App Team - frank"
 lblue "#######################"
@@ -66,25 +38,20 @@ pe "vault kv get kv-blog/deepak/email"
 red "This should fail.  Frank shouldn't have access to deepak's path (kv-blog/deepak/*)"
 
 echo
-yellow "Can Frank store a poor AWS Secret?"
-pe "vault kv put kv-blog/frank/aws/config/root access_key=AAAAABBBBBCCCCCDDDDD secret_key=myfavoritepassword"
-pe "vault kv put kv-blog/frank/aws/config/root access_key=AAAAABBBBBCCCCCDDDDD secret_key=AAAAABBBBBCCCCCDDDDDAAAAABBBBBCCCCCDDDDD"
-
-echo
-./enable_okta_mfa.sh
+#./enable_okta_mfa.sh
 echo
 echo
 lblue "##########################################################"
 lcyan "  Access the HR App's DB using Dynamic Credentials"
 lblue "##########################################################"
 
-pe "export VAULT_NAMESPACE=\"IT/hr\""
-
+export VAULT_NAMESPACE="IT/hr"
+p
 # Open pg4admin UI
 open "http://${PGHOST}"
 echo
-p "vault read db-blog/creds/mother-hr-full-1h"
-creds=$(vault read db-blog/creds/mother-hr-full-1h)
+p "vault read db-blog/creds/mother-hr-full-2m"
+creds=$(vault read db-blog/creds/mother-hr-full-2m)
 PGUSER="$(echo $creds | xargs -n2 | grep -w username | awk '{ print $NF}')"
 PGPASSWORD="$(echo $creds | xargs -n2 | grep -w password | awk '{ print $NF}')"
 echo $creds | xargs -n2
@@ -136,7 +103,7 @@ green "Step 1: Get Alice's encrypted id"
 pe "QUERY=\"select id from hr.people where email='alice@ourcorp.com'\""
 export PG_OPTIONS="-A -t"
 enc_user_id=$(psql)
-echo "${enc_user_id}"
+echo "enc_user_id=${enc_user_id}"
 export PG_OPTIONS=""
 echo
 green "Step 2: Decrypt Alice's id"

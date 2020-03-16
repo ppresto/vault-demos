@@ -42,7 +42,7 @@ GRANT USAGE ON SCHEMA hr TO \"{{name}}\";
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA hr TO \"{{name}}\";"
 TTL=1h
 write_db_role_debug
-TTL=1m
+TTL=2m
 write_db_role
 
 #echo

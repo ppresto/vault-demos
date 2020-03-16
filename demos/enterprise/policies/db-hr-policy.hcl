@@ -1,4 +1,4 @@
-path "db-blog/creds/mother-hr-full-1m" {
+path "db-blog/creds/mother-hr-full-2m" {
     capabilities = [ "read" ]
 }
 
