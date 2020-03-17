@@ -26,6 +26,7 @@ variable "nat_count"        { default = 1 }
 variable "bastion_servers"  { default = 1 }
 variable "bastion_instance" { default = "t2.micro" }
 variable "bastion_image_id" { default = "" }
+variable "ssh_key_name"     { default = "ppresto-ptfe-dev-key" }
 
 variable "network_tags" {
   type    = "map"
