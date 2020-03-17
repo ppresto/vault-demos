@@ -70,6 +70,7 @@ module "network_aws" {
   nat_count         = "${var.nat_count}"
   bastion_count     = "${var.bastion_servers}"
   instance_type     = "${var.bastion_instance}"
+  ssh_key_name      = "ppresto-ptfe-dev-key"
   os                = "${replace(lower(var.ami_name), "ubuntu", "") != lower(var.ami_name) ? "Ubuntu" : replace(lower(var.ami_name), "rhel", "") != lower(var.ami_name) ? "RHEL" : "unknown"}"
   image_id          = "${var.bastion_image_id != "" ? var.bastion_image_id : data.aws_ami.base.id}"
   tags              = "${var.network_tags}"
