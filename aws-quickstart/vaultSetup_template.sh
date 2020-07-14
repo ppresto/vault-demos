@@ -1,13 +1,20 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+# Description: 
+# Run this to copy the admin scripts to the bastion host managing your new vault cluster.
+# We will use this bastion host to access, unseal, and upgrade your cluster.
+# If using your own custom aws key for ssh you may need to manually update the key this script will create locally.
+# Just cat your existing key > into the local one and rerun the vaultSetup_template.sh
+#
+
 # This is for the time to wait when using demo_magic.sh
 if [[ -z ${DEMO_WAIT} ]];then
   DEMO_WAIT=0
 fi
 
 # Demo magic gives wrappers for running commands in demo mode.   Also good for learning via CLI.
-. ${DIR}/../demo-magic.sh -d -p -w ${DEMO_WAIT}
+. ${DIR}/../demos/demo-magic.sh -d -p -w ${DEMO_WAIT}
 
 # Set Env Variables using terraform output
 VAULT_ADDR=$(cd ${DIR}; terraform output | grep "export VAULT_ADDR" | head -1 | cut -d= -f2)
@@ -114,7 +121,7 @@ cyan "Copying & Running initial Vault Setup Scripts on Bastion host"
 chmod 750 ${DIR}/${myscript}
 scp -oStrictHostKeyChecking=no -i ${DIR}/${PRIVATE_KEY} ${DIR}/${myscript} ec2-user@${BASTION_HOST}:
 scp -oStrictHostKeyChecking=no -i ${DIR}/${PRIVATE_KEY} ${DIR}/vaultAdmin.sh ec2-user@${BASTION_HOST}:
-echo
+echo "scp -oStrictHostKeyChecking=no -i ${DIR}/${PRIVATE_KEY} ${DIR}/${myscript} ec2-user@${BASTION_HOST}:"
 
 # Execute script on bastion host
 ssh -A -i ${DIR}/${PRIVATE_KEY} ec2-user@${BASTION_HOST} "./${myscript}"

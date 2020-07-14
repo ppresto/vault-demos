@@ -1,0 +1,16 @@
+{
+  "request_id": "c3af2747-c691-bdfd-08b2-72eb234ff44a",
+  "lease_id": "",
+  "renewable": false,
+  "lease_duration": 0,
+  "data": {
+    "keys": {
+      "1": "AKJGlWjoOE9cv29+EKaL/30mzmp2e1mvvrIyjL52Q7A="
+    },
+    "name": "hr",
+    "type": "aes256-gcm96"
+  },
+  "wrap_info": null,
+  "warnings": null,
+  "auth": null
+}

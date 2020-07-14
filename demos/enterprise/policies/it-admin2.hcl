@@ -40,3 +40,7 @@ path "hr/identity/*" {
 path "hr/auth/token/*" {
    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
 }
+
+path "hr/transit-blog/*" {
+  capabilities = [ "create", "read", "update", "delete", "list", "sudo"]
+}

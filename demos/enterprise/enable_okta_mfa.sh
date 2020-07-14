@@ -24,7 +24,7 @@ vault write sys/mfa/method/okta/my_okta \
     org_name="dev-394102" \
     base_url="okta.com" \
     username_format="{{alias.name}}@example.com" \
-    api_token="001LFdNA7Z7Sa_pfcwFkstgRoEu4esZUw4tcDhrYht"
+    api_token="00mV62G5aNT2izelMSwvblxK40U-0_OpYuiAHD-lq6"
 
 echo
 green "Review our HR DB Policy requiring MFA"
