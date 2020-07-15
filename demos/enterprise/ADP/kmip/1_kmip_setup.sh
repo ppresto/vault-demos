@@ -1,7 +1,7 @@
 shopt -s expand_aliases
 
 DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-. ${DIRECTORY}/../enterprise/env.sh
+. ${DIRECTORY}/../../env.sh
 
 #MONGO_DB_DATA="/usr/local/var/mongodb"
 MONGO_DB_DATA="${DIRECTORY}/mongodb"
@@ -121,4 +121,4 @@ echo
 cyan "View Vault Audit Log"
 green "Look for the KMIP Key ID: ${kmip}"
 p "cat /tmp/vault_audit.log | jq"
-${DIRECTORY}/../enterprise/launch_iterm.sh /tmp "cat /tmp/vault_audit.log | jq &"
+${DIRECTORY}/../../launch_iterm.sh /tmp "cat /tmp/vault_audit.log | jq &"

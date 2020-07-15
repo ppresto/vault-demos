@@ -1,5 +1,7 @@
 # Mongodb
 **/mongodb*
+mongodb.log
+mongodb*.tgz
 
 # Compiled files
 *.tfstate
