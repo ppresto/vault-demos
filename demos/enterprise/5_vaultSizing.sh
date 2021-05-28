@@ -1,18 +1,4 @@
 #!/bin/bash
-# Environment Variables this script expects
-  # Required:
-    # VAULT_ADDR=https://my.vault.url.com:8200
-    # VAULT_TOKEN=$VAULT_TOKEN
-
-  # Optional:
-    #VAULT_CLIENT_CERT=/certs/test.crt
-    #VAULT_CLIENT_KEY=/certs/test.key
-    #VAULT_CACERT=/certs/ca.crt
-    #SKIP_ORPHAN_TOKENS=yes
-
-# Reference: # https://raw.githubusercontent.com/WhatsARanjit/vault-counter/master/scripts/counter.sh
-
-#source env.sh
 
 if [ -z "$JSON_OUTPUT" ]
 then

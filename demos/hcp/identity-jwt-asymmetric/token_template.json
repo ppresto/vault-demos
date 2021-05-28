@@ -1,0 +1,4 @@
+{
+    "entity_id": {{identity.entity.id}},
+    "entity_name": {{identity.entity.name}}
+}
