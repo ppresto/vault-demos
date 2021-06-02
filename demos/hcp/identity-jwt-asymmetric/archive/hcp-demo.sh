@@ -31,8 +31,6 @@ vault write auth/userpass/users/ops-1 password=ops-1 policies=ops-team
 vault write auth/userpass/users/app-1 password=app-1 policies=app-team
 
 # Write the configuration
-echo "Write OIDC configuration"
-
 vault write identity/oidc/config issuer="${VAULT_ADDR}"
 
 # Read the configuration
@@ -40,38 +38,34 @@ vault read -format=json identity/oidc/config | jq -r .data
 
 # Create two roles.  ID tokens are generated against a role and its  configured key.
 # Define Claims in token_template: https://www.vaultproject.io/docs/secrets/identity#token-contents-and-templates
-vault write identity/oidc/role/role-ops \
-    key="key-ops-1" ttl="12h" template=@token_template.json
-vault write identity/oidc/role/role-app \
-    key="key-app-1" ttl="12h" template=@token_template.json
+vault write identity/oidc/role/role-001 \
+    key="named-key-001" ttl="12h" template=@token_template.json
+vault write identity/oidc/role/role-002 \
+    key="named-key-002" ttl="12h" template=@token_template.json
 
 # Get the Role IDs
-vault read -format=json identity/oidc/role/role-ops | jq -r
-ROLE_OPS_1_CLIENT_ID=$(vault read -format=json identity/oidc/role/role-ops | jq -r .data.client_id)
-ROLE_APP_1_CLIENT_ID=$(vault read -format=json identity/oidc/role/role-app | jq -r .data.client_id)
+vault read -format=json identity/oidc/role/role-001 | jq -r
+ROLE_1_CLIENT_ID=$(vault read -format=json identity/oidc/role/role-001 | jq -r .data.client_id)
+ROLE_2_CLIENT_ID=$(vault read -format=json identity/oidc/role/role-002 | jq -r .data.client_id)
 
 # Create two named keys.  The associated role uses the key to sign the token.
-vault write identity/oidc/key/key-ops-1 \
-    rotation_period="10m" verification_ttl="30m" allowed_client_ids=$ROLE_OPS_1_CLIENT_ID
+vault write identity/oidc/key/named-key-001 \
+    rotation_period="10m" verification_ttl="30m" allowed_client_ids=$ROLE_1_CLIENT_ID
 
-vault write identity/oidc/key/key-app-1 \
-    rotation_period="10m" verification_ttl="30m" allowed_client_ids=$ROLE_APP_1_CLIENT_ID
+vault write identity/oidc/key/named-key-002 \
+    rotation_period="10m" verification_ttl="30m" allowed_client_ids=$ROLE_2_CLIENT_ID
 
 # Read the keys
-vault read identity/oidc/key/key-ops-1
-vault read identity/oidc/key/key-app-1
+vault read identity/oidc/key/named-key-001
+vault read identity/oidc/key/named-key-002
 
-# Sign in as the ops-1 user
-echo "Sign in as the ops-1 user"
-
+# Sign in as the Ops user
 unset VAULT_TOKEN
 vault login -format=json -method=userpass username=ops-1 password=ops-1
 
 # Generate a signed ID (OIDC) token
-echo "Generate a signed ID (OIDC) token"
-
-vault read identity/oidc/token/role-ops
-TOKEN_DATA=$(vault read -format=json identity/oidc/token/role-ops)
+vault read identity/oidc/token/role-001
+TOKEN_DATA=$(vault read -format=json identity/oidc/token/role-001)
 CLIENT_ID=$(echo $TOKEN_DATA | jq -r .data.client_id)
 ID_TOKEN=$(echo $TOKEN_DATA | jq -r .data.token)
 
@@ -82,10 +76,10 @@ export VAULT_TOKEN=$(vault login -format=json -method=userpass username=app-1 pa
 echo $TOKEN_DATA | jq -r .data.token | jwt decode -
 
 # create verify.json payload for introspection/validation
-cat <<-EOF > verify.json
-{
-    "token": "${ID_TOKEN}"
-}
+cat <<-'EOF' > verify.json
+    {
+        "token": "${ID_TOKEN}"
+    }
 EOF
 
 # Verify the authenticity and active state of the signed ID token.
@@ -112,30 +106,14 @@ curl \
     ${VAULT_ADDR}/v1/identity/oidc/.well-known/keys | jq -r .
 
 # Rotate a Named Key as app1 fails
-vault write -force -format=json identity/oidc/key/key-app-1/rotate
+vault write -force -format=json identity/oidc/key/named-key-002/rotate
 
 # Rotate a Named Key successfully as user ops-1
-echo "Login as ops-1 user with policy that allows key rotation"
-unset VAULT_TOKEN
 export VAULT_TOKEN=$(vault login -format=json -method=userpass username=ops-1 password=ops-1 | jq -r .auth.client_token)
 
-echo "Current well-known keys:"
-curl \
-    --header "X-Vault-Namespace: admin/dev" \
-    --request GET \
-    ${VAULT_ADDR}/v1/identity/oidc/.well-known/keys | jq -r '.keys[].kid'
-echo 
-echo "Rotate key-app-1"
-echo
 curl \
     --header "X-Vault-Token: $VAULT_TOKEN" \
     --header "X-Vault-Namespace: admin/dev" \
     --request POST \
     --data '{"verification_ttl": 0}' \
-    ${VAULT_ADDR}/v1/identity/oidc/key/key-app-1/rotate
-
-echo "Updated well-known keys:"
-curl \
-    --header "X-Vault-Namespace: admin/dev" \
-    --request GET \
-    ${VAULT_ADDR}/v1/identity/oidc/.well-known/keys | jq -r '.keys[].kid'
+    ${VAULT_ADDR}/v1/identity/oidc/key/named-key-002/rotate
