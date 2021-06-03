@@ -6,14 +6,14 @@
 # Identity API: https://www.vaultproject.io/api/secret/identity
 # JWT Claims: https://www.vaultproject.io/docs/auth/jwt#bound-claims
 
-# Set the required env variables.  Use TFCB outputs for this.
-#export VAULT_ADDR=https://hcp-vault-cluster.vault.11eb13d3-0dd1-af4a-9eb3-0242ac110018.aws.hashicorp.cloud:8200
-export VAULT_NAMESPACE=admin
+# Pre-Reqs:
+# Set the required env variables to use the CLI.  Use TFCB outputs for this.
+# export VAULT_ADDR=https://hcp-vault-cluster.vault.11eb13d3-0dd1-af4a-9eb3-0242ac110018.aws.hashicorp.cloud:8200
+# export VAULT_TOKEN=s.######
+# export VAULT_NAMESPACE=admin
 
 # Create dev namespace
 vault namespace create dev
-vault namespace create qa
-vault namespace create prod
 
 # Manage namespace admin/dev
 export VAULT_NAMESPACE=admin/dev
